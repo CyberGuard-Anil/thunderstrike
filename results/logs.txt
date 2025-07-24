@@ -1,0 +1,5 @@
+[2025-07-25 01:21:06] Attack: tcp | Target: 192.168.1.100:80 | Duration: 60s | Threads: 100 | User: cyberguard
+[2025-07-25 01:21:18] Attack: udp | Target: 192.168.1.100:53 | Duration: 45s | Threads: 150 | User: cyberguard
+[2025-07-25 01:22:33] EVENT: Test/lab environment cleanup executed by 'cyberguard'
+[2025-07-25 01:28:00] EVENT: Test/lab environment cleanup executed by 'cyberguard'
+[2025-07-25 01:35:21] EVENT: Test/lab environment cleanup executed by 'cyberguard'

@@ -28,7 +28,7 @@ show_banner() {
     echo -e "${YELLOW}╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝╚═╝  ╚═╝╚══════╝${NC}"
     echo ""
     echo -e "${CYAN}Advanced DoS Testing Toolkit v1.0${NC}"
-    echo -e "${WHITE}Author: Security Researcher${NC}"
+    echo -e "${WHITE}Author: Anil Yadav${NC}"
     echo -e "${RED}⚠️  For authorized testing only ⚠️${NC}"
     echo ""
 }
