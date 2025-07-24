@@ -1,0 +1,151 @@
+# ThunderStrike Attack Configuration File
+# Version: 1.0
+
+# Global Settings
+global:
+  log_attacks: true
+  check_dependencies: true
+  max_duration: 3600
+  default_threads: 100
+
+# Attack Profiles
+profiles:
+  # Light stress test
+  light_stress:
+    method: tcp
+    duration: 30
+    threads: 50
+    description: "Light TCP stress test"
+  
+  # Medium stress test
+  medium_stress:
+    method: syn
+    duration: 60
+    threads: 100
+    description: "Medium SYN flood test"
+  
+  # Heavy stress test
+  heavy_stress:
+    method: udp
+    duration: 120
+    threads: 200
+    description: "Heavy UDP flood test"
+  
+  # Web server test
+  web_stress:
+    method: slowloris
+    duration: 300
+    threads: 150
+    description: "Web server stress test"
+
+# Batch Attack Configurations
+batch_attacks:
+  # Multi-vector attack
+  multi_vector:
+    description: "Multiple attack vectors in sequence"
+    attacks:
+      - method: icmp
+        duration: 30
+        threads: 50
+      - method: tcp
+        duration: 60
+        threads: 100
+      - method: udp
+        duration: 60
+        threads: 100
+      - method: syn
+        duration: 90
+        threads: 150
+
+  # Escalating attack
+  escalation:
+    description: "Escalating intensity attack"
+    attacks:
+      - method: tcp
+        duration: 30
+        threads: 25
+      - method: tcp
+        duration: 30
+        threads: 50
+      - method: tcp
+        duration: 30
+        threads: 100
+      - method: tcp
+        duration: 30
+        threads: 200
+
+# Target Configurations
+targets:
+  # Local network testing
+  local_test:
+    host: "192.168.1.100"
+    ports: [80, 443, 8080]
+    description: "Local network test target"
+  
+  # Web server testing
+  web_server:
+    host: "example.com"
+    ports: [80, 443]
+    description: "Web server test target"
+
+# Advanced Settings
+advanced:
+  # Python extensions
+  python:
+    syn_flood:
+      packet_rate: 1000
+      spoofing: true
+      random_payload: true
+    
+    slowloris:
+      connection_timeout: 4
+      keep_alive_interval: 15
+      headers_delay: 10
+  
+  # Go extensions
+  go:
+    udp_flood:
+      packet_size: 1024
+      buffer_size: 65536
+      burst_mode: false
+
+# Logging Configuration
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  file: "results/logs.txt"
+  max_size: "10MB"
+  backup_count: 5
+  format: "[%timestamp%] %level% - %message%"
+
+# Safety Limits
+safety:
+  max_threads: 1000
+  max_duration: 3600
+  max_packet_size: 65536
+  require_confirmation: true
+  blacklist:
+    - "127.0.0.1"
+    - "localhost"
+    - "::1"
+
+# Dependencies
+dependencies:
+  required:
+    - "hping3"
+    - "nc"
+    - "ping"
+    - "timeout"
+  
+  optional:
+    - "nping"
+    - "python3"
+    - "go"
+    - "nmap"
+
+# Usage Examples
+examples:
+  basic_tcp: "./thunderstrike.sh -m tcp -t 192.168.1.100 -p 80 -d 60"
+  syn_flood: "./thunderstrike.sh -m syn -t example.com -p 443 -d 30 -r 200"
+  with_logging: "./thunderstrike.sh -m udp -t 10.0.0.1 -p 53 -d 45 -l"
+  config_file: "./thunderstrike.sh -c conf_attack.yaml"
+
